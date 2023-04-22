@@ -1,0 +1,188 @@
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.desktop-website-logo {
+  display: none;
+}
+.form-container {
+  width: 100vw;
+  height: 100vh;
+  background: #0c0b10;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.mobile-website-logo {
+  width: 100px;
+  height: 27px;
+  align-self: flex-start;
+}
+.login-heading {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  color: #ffffff;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.input-label {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+}
+.password-input-field,
+.username-input-field {
+  height: 40px;
+  width: 100%;
+  background: #333333;
+  border-radius: 2px;
+  padding-left: 16px;
+  margin-top: 8px;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+}
+.mobile-sign-in-button {
+  display: flex;
+  flex-direction: row;
+  height: 42px;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  background-color: #e50914;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 24px;
+  outline: none;
+  border: none;
+}
+.desktop-login-button {
+  display: none;
+}
+.input-content-container {
+  flex-grow: 1;
+  width: 100%;
+}
+.error-message {
+  line-height: 18px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #dc2626;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  min-width: 247px;
+  margin-bottom: 24px;
+}
+.logo-container {
+  justify-self: flex-start;
+  width: 100%;
+  flex-grow: 1;
+}
+
+@media screen and (min-width: 992px) {
+  .login-form-container {
+    background-image: url('https://res.cloudinary.com/dlbkfmgjo/image/upload/v1681889856/netfilx_1_uzjbqg.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .login-heading {
+    margin-bottom: 32px;
+  }
+  .desktop-website-logo {
+    display: flex;
+    width: 180px;
+    height: 52px;
+    margin-top: 48px;
+    margin-left: 165px;
+    justify-self: flex-start;
+  }
+  .form-container {
+    width: 456px;
+    height: 440px;
+    background-color: #0c0b10;
+    opacity: 0.8;
+    border-radius: 8px;
+    padding: 64px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+  }
+  .mobile-website-logo {
+    display: none;
+  }
+  .desktop-logo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    justify-self: flex-start;
+    flex-grow: 1;
+  }
+  .form-div-container {
+    flex-grow: 1;
+  }
+  .desktop-login-button {
+    background-color: #e50914;
+    border-radius: 8px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 8px 20px;
+    align-items: center;
+    min-height: 40px;
+    color: #ffffff;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border: none;
+  }
+  .mobile-sign-in-button {
+    display: none;
+  }
+  .error-message {
+    align-self: flex-start;
+    text-align: left;
+  }
+}
