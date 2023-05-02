@@ -25,11 +25,13 @@ class Header extends Component {
     return (
       <div>
         <nav className="nav-container">
-          <img
-            src="https://res.cloudinary.com/dlbkfmgjo/image/upload/v1681886490/Group_7399_1_brkmpm.png"
-            alt="website logo"
-            className="header-website-logo"
-          />
+          <Link to="/" className="link-style">
+            <img
+              src="https://res.cloudinary.com/dlbkfmgjo/image/upload/v1681886490/Group_7399_1_brkmpm.png"
+              alt="website logo"
+              className="header-website-logo"
+            />
+          </Link>
           <ul className="header-list-container">
             <Link to="/" className="link-style">
               <li className="header-list">Home</li>

@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
@@ -54,7 +55,8 @@ class Home extends Component {
         trendingList: updatedData,
         trendingApiStatus: apiStatusConstants.success,
       })
-    } else {
+    }
+    if (response.status === 404) {
       this.setState({
         trendingApiStatus: apiStatusConstants.failure,
       })
@@ -90,7 +92,8 @@ class Home extends Component {
         originalsApiStatus: apiStatusConstants.success,
         randomMovieObj: movieObject,
       })
-    } else {
+    }
+    if (response.status === 404) {
       this.setState({
         originalsApiStatus: apiStatusConstants.failure,
       })
@@ -119,7 +122,7 @@ class Home extends Component {
           <Header />
           <div className="desktop-top-card-content-container">
             <h1 className="title-heading">{title}</h1>
-            <p className="movie-overview">{overview}</p>
+            <h1 className="movie-overview">{overview}</h1>
             <button className="play-btn" type="button">
               Play
             </button>
@@ -157,24 +160,26 @@ class Home extends Component {
   }
 
   renderTopContainerFailureView = () => (
-    <div className="top-container">
+    <div className="failure-bg-container">
       <Header />
-      <div className="top-failure-container">
-        <img
-          src="https://res.cloudinary.com/dzvngxapf/image/upload/v1682003597/Icon_zlmofi.png"
-          alt="failure view"
-          className="failure-img"
-        />
-        <p className="failure-description">
-          Something went wrong. Please try again
-        </p>
-        <button
-          className="try-again-btn"
-          type="button"
-          onClick={this.onTryingOriginalsAgain}
-        >
-          Try Again
-        </button>
+      <div className="top-card-failure-container">
+        <div className="top-failure-container">
+          <img
+            src="https://res.cloudinary.com/dzvngxapf/image/upload/v1682003597/Icon_zlmofi.png"
+            alt="failure view"
+            className="failure-img"
+          />
+          <p className="failure-description">
+            Something went wrong. Please try again
+          </p>
+          <button
+            className="try-again-btn"
+            type="button"
+            onClick={this.onTryingOriginalsAgain}
+          >
+            Try Again
+          </button>
+        </div>
       </div>
     </div>
   )
@@ -237,11 +242,13 @@ class Home extends Component {
         <div className="slick-container">
           <Slider {...settings}>
             {trendingList.map(eachMovieObj => {
-              const {id, backdropPath, title} = eachMovieObj
+              const {id, posterPath, title} = eachMovieObj
               return (
-                <div className="slick-item" key={id}>
-                  <img className="movie-image" src={backdropPath} alt={title} />
-                </div>
+                <Link to={`movies/${id}`} className="link-style" key={id}>
+                  <div className="slick-item">
+                    <img className="movie-image" src={posterPath} alt={title} />
+                  </div>
+                </Link>
               )
             })}
           </Slider>
@@ -336,11 +343,13 @@ class Home extends Component {
         <div className="slick-container">
           <Slider {...settings}>
             {originalsList.map(eachMovieObj => {
-              const {id, backdropPath, title} = eachMovieObj
+              const {id, posterPath, title} = eachMovieObj
               return (
-                <div className="slick-item" key={id}>
-                  <img className="movie-image" src={backdropPath} alt={title} />
-                </div>
+                <Link to={`movies/${id}`} className="link-style" key={id}>
+                  <div className="slick-item">
+                    <img className="movie-image" src={posterPath} alt={title} />
+                  </div>
+                </Link>
               )
             })}
           </Slider>

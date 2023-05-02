@@ -1,0 +1,139 @@
+.account-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #131313;
+}
+.account-content-container {
+  padding-left: 165px;
+  padding-right: 165px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #ffffff;
+  height: 100%;
+}
+.account-heading {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 47px;
+  color: #131313;
+  margin-top: 64px;
+}
+.line {
+  background: #cbd5e1;
+  border-radius: 10px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+.membership-container,
+.plan-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.membership-plan-text,
+.password-text,
+.password {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  width: 150px;
+  font-size: 24px;
+  line-height: 31px;
+  color: #94a3b8;
+  margin: 0px;
+}
+.password-text {
+  width: 100%;
+}
+.email-text,
+.plan-type {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+  color: #1e293b;
+  margin: 0px;
+}
+.plan-type-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 24px;
+}
+.account-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 24px;
+}
+.resolution-type {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #1e293b;
+  border: 1px solid #1e293b;
+  padding: 2px 4px 2px 4px;
+  margin: 0px;
+  margin-left: 24px;
+}
+.logout-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 20px;
+  background-color: #e50914;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  color: #ffffff;
+  align-self: center;
+  margin-bottom: 255px;
+  cursor: pointer;
+}
+@media screen and (max-width: 992px) {
+  .account-heading {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .account-content-container {
+    padding: 0px 32px 0px 32px;
+  }
+  .membership-plan-text,
+  .password-text,
+  .password {
+    font-size: 18px;
+    line-height: 23px;
+  }
+  .email-text,
+  .plan-type {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .resolution-type {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .logout-btn {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 82px;
+  }
+}
