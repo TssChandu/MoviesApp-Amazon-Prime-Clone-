@@ -55,8 +55,7 @@ class Home extends Component {
         trendingList: updatedData,
         trendingApiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 404) {
+    } else {
       this.setState({
         trendingApiStatus: apiStatusConstants.failure,
       })
@@ -92,8 +91,7 @@ class Home extends Component {
         originalsApiStatus: apiStatusConstants.success,
         randomMovieObj: movieObject,
       })
-    }
-    if (response.status === 404) {
+    } else {
       this.setState({
         originalsApiStatus: apiStatusConstants.failure,
       })
@@ -244,11 +242,11 @@ class Home extends Component {
             {trendingList.map(eachMovieObj => {
               const {id, posterPath, title} = eachMovieObj
               return (
-                <Link to={`movies/${id}`} className="link-style" key={id}>
-                  <div className="slick-item">
+                <div className="slick-item">
+                  <Link to={`movies/${id}`} className="link-style" key={id}>
                     <img className="movie-image" src={posterPath} alt={title} />
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               )
             })}
           </Slider>

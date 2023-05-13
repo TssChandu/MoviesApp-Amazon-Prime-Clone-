@@ -46,8 +46,7 @@ class Popular extends Component {
         popularList: updatedData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 404) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })

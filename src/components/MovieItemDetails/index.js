@@ -77,8 +77,7 @@ class MovieItemDetails extends Component {
         similarMoviesList: updatedSimilarMoviesData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 404) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
@@ -127,7 +126,7 @@ class MovieItemDetails extends Component {
               <p className="adult-type">{movieType}</p>
               <p className="release-year">{year}</p>
             </div>
-            <h1 className="movie-overview">{overview}</h1>
+            <p className="movie-overview">{overview}</p>
             <button className="play-btn" type="button">
               Play
             </button>
@@ -161,7 +160,7 @@ class MovieItemDetails extends Component {
           <div className="content-list-container">
             <h1 className="content-heading">Budget</h1>
             <p className="content-description">{budget}</p>
-            <h1 className="content-heading"> Release Date</h1>
+            <p className="content-heading"> Release Date</p>
             <p className="content-description">{dateFormat}</p>
           </div>
         </div>

@@ -23,7 +23,7 @@ class Header extends Component {
   render() {
     const {isHamburgerClicked} = this.state
     return (
-      <div>
+      <>
         <nav className="nav-container">
           <Link to="/" className="link-style">
             <img
@@ -79,7 +79,7 @@ class Header extends Component {
             <IoCloseCircle className="close-icon" onClick={this.onClosing} />
           </ul>
         )}
-      </div>
+      </>
     )
   }
 }
