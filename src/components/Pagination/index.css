@@ -1,0 +1,41 @@
+.pageButton {
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin: 3px;
+  background-color: transparent;
+  color: rgb(209, 210, 212);
+  cursor: pointer;
+}
+
+.pageButton:hover {
+  border: none;
+  background-color: rgb(25, 85, 50);
+}
+
+.active {
+  color: #fff;
+  background-color: rgb(28, 63, 160);
+  border: none;
+}
+.icon {
+  border: none;
+  background-color: transparent;
+  margin: 3px;
+  color: #fff;
+  height: 35px;
+  width: 30px;
+  padding: 0px;
+  cursor: pointer;
+}
+.icon:hover {
+  color: rgb(28, 63, 160);
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

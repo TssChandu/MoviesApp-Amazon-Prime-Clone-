@@ -131,6 +131,19 @@ class Login extends Component {
                 Sign in
               </button>
               {showLoginError && <p className="error-message">*{errorMsg}</p>}
+              <p className="error-message" style={{margin: '15px 0px'}}>
+                <span
+                  style={{
+                    color: 'white',
+                    margin: '10px 0px',
+                    display: 'inline-block',
+                  }}
+                >
+                  Sample User Credentials
+                </span>
+                <br /> username: rahul <br />
+                password: rahul@2021
+              </p>
             </div>
           </form>
         </div>

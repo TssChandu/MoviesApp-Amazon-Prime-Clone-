@@ -1,7 +1,9 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Header from '../Header'
+import Pagination from '../Pagination/Pagination'
 import Footer from '../Footer'
 import './index.css'
 
@@ -17,6 +19,8 @@ class MovieItemDetails extends Component {
     movieDetailsObject: {},
     similarMoviesList: [],
     apiStatus: apiStatusConstants.initial,
+    perPage: [],
+    active: 1,
   }
 
   componentDidMount() {
@@ -76,6 +80,7 @@ class MovieItemDetails extends Component {
         movieDetailsObject: updatedData,
         similarMoviesList: updatedSimilarMoviesData,
         apiStatus: apiStatusConstants.success,
+        perPage: updatedSimilarMoviesData.slice(0, 3),
       })
     } else {
       this.setState({
@@ -84,8 +89,16 @@ class MovieItemDetails extends Component {
     }
   }
 
+  onClickPage = num => {
+    const {similarMoviesList} = this.state
+    this.setState({
+      active: num,
+      perPage: similarMoviesList.slice(num * 3 - 3, num * 3),
+    })
+  }
+
   renderSuccessView = () => {
-    const {movieDetailsObject, similarMoviesList} = this.state
+    const {movieDetailsObject, perPage, active, similarMoviesList} = this.state
     const {
       adult,
       backdropPath,
@@ -167,16 +180,33 @@ class MovieItemDetails extends Component {
         <div className="similar-movie-container">
           <h1 className="similar-movies-heading">More like this</h1>
           <ul className="similar-movies-list-container">
-            {similarMoviesList.map(eachMovie => (
-              <li key={eachMovie.id}>
-                <img
-                  src={eachMovie.posterPath}
-                  alt={eachMovie.title}
-                  className="movie-img"
-                />
-              </li>
-            ))}
+            {perPage.map(eachMovie => {
+              console.log(eachMovie.id)
+              return (
+                <Link
+                  to={`${eachMovie.id}`}
+                  onClick={() => {
+                    window.location.href = `${eachMovie.id}`
+                  }}
+                  className="link-style"
+                  key={eachMovie.id}
+                >
+                  <li>
+                    <img
+                      src={eachMovie.posterPath}
+                      alt={eachMovie.title}
+                      className="movie-img"
+                    />
+                  </li>
+                </Link>
+              )
+            })}
           </ul>
+          <Pagination
+            onClickPage={this.onClickPage}
+            active={active}
+            data={Math.ceil(similarMoviesList.length / 3)}
+          />
           <Footer />
         </div>
       </>

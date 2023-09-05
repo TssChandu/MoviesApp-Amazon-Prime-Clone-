@@ -113,7 +113,7 @@ class Home extends Component {
         <div
           className="desktop-top-container"
           style={{
-            backgroundImage: `url(${backdropPath})`,
+            background: `rgba(0, 0, 0, 0.8) url(${backdropPath})`,
             backgroundSize: 'cover',
           }}
         >
@@ -206,6 +206,8 @@ class Home extends Component {
     const settings = {
       dots: false,
       infinite: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
@@ -242,11 +244,11 @@ class Home extends Component {
             {trendingList.map(eachMovieObj => {
               const {id, posterPath, title} = eachMovieObj
               return (
-                <div className="slick-item">
-                  <Link to={`movies/${id}`} className="link-style" key={id}>
+                <Link to={`movies/${id}`} className="link-style" key={id}>
+                  <div className="slick-item">
                     <img className="movie-image" src={posterPath} alt={title} />
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               )
             })}
           </Slider>
@@ -309,6 +311,8 @@ class Home extends Component {
       infinite: true,
       speed: 500,
       slidesToShow: 4,
+      autoplay: true,
+      autoplaySpeed: 2000,
       slidesToScroll: 1,
       responsive: [
         {
