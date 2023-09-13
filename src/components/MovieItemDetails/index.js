@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Header from '../Header'
+import HeaderContext from '../../headerContext/HeaderContext'
 import Pagination from '../Pagination/Pagination'
 import Footer from '../Footer'
 import './index.css'
@@ -102,6 +103,7 @@ class MovieItemDetails extends Component {
     const {
       adult,
       backdropPath,
+      posterPath,
       budget,
       genres,
       overview,
@@ -111,6 +113,7 @@ class MovieItemDetails extends Component {
       title,
       voteAverage,
       voteCount,
+      id,
     } = movieDetailsObject
     const duration = `${parseInt(runtime / 60)}h ${runtime % 60}m`
     const movieType = adult ? 'A' : 'U/A'
@@ -123,93 +126,127 @@ class MovieItemDetails extends Component {
     const dateFormat = `${day} ${month} ${year}`
 
     return (
-      <>
-        <div
-          className="top-movie-details-container"
-          style={{
-            backgroundImage: `url(${backdropPath})`,
-            backgroundSize: 'cover',
-          }}
-        >
-          <Header />
-          <div className="desktop-top-card-content-container">
-            <h1 className="title-heading">{title}</h1>
-            <div className="duration-type-release-year-container">
-              <p className="duration">{duration}</p>
-              <p className="adult-type">{movieType}</p>
-              <p className="release-year">{year}</p>
-            </div>
-            <p className="movie-overview">{overview}</p>
-            <button className="play-btn" type="button">
-              Play
-            </button>
-          </div>
-        </div>
-        <div className="movie-details-container">
-          <ul className="content-list-container">
-            <h1 className="content-heading">Genres</h1>
-            {genres.map(eachGenre => (
-              <li className="genre-list" key={eachGenre.id}>
-                <p className="content-description">{eachGenre.name}</p>
-              </li>
-            ))}
-          </ul>
-          <ul className="content-list-container">
-            <h1 className="content-heading">Audio Available</h1>
-            {spokenLanguages.map(eachLanguage => (
-              <li className="genre-list" key={eachLanguage.id}>
-                <p className="content-description">
-                  {eachLanguage.englishName}
-                </p>
-              </li>
-            ))}
-          </ul>
-          <div className="content-list-container">
-            <h1 className="content-heading">Rating Count</h1>
-            <p className="content-description">{voteCount}</p>
-            <h1 className="content-heading"> Rating Average</h1>
-            <p className="content-description">{voteAverage}</p>
-          </div>
-          <div className="content-list-container">
-            <h1 className="content-heading">Budget</h1>
-            <p className="content-description">{budget}</p>
-            <p className="content-heading"> Release Date</p>
-            <p className="content-description">{dateFormat}</p>
-          </div>
-        </div>
-        <div className="similar-movie-container">
-          <h1 className="similar-movies-heading">More like this</h1>
-          <ul className="similar-movies-list-container">
-            {perPage.map(eachMovie => {
-              console.log(eachMovie.id)
-              return (
-                <Link
-                  to={`${eachMovie.id}`}
-                  onClick={() => {
-                    window.location.href = `${eachMovie.id}`
-                  }}
-                  className="link-style"
-                  key={eachMovie.id}
-                >
-                  <li>
-                    <img
-                      src={eachMovie.posterPath}
-                      alt={eachMovie.title}
-                      className="movie-img"
-                    />
-                  </li>
-                </Link>
+      <HeaderContext.Consumer>
+        {value => {
+          const {
+            wishListMovies,
+            addMovieToWishList,
+            removeMovieToWishList,
+          } = value
+          /* console.log(wishListMovies) */
+          console.log(id)
+          const checkMovie = wishListMovies.filter(item => id === item.id)
+          console.log(checkMovie)
+          const wishListButton = checkMovie.length !== 0 ? 'Dislike' : 'Like'
+          const setWishlist = () => {
+            if (checkMovie.length !== 0) {
+              const newWishListMovies = wishListMovies.filter(
+                item => id !== item.id,
               )
-            })}
-          </ul>
-          <Pagination
-            onClickPage={this.onClickPage}
-            active={active}
-            data={Math.ceil(similarMoviesList.length / 3)}
-          />
-          <Footer />
-        </div>
-      </>
+              removeMovieToWishList(newWishListMovies)
+            } else {
+              addMovieToWishList({
+                id,
+                posterPath,
+                title,
+              })
+            }
+          }
+          return (
+            <>
+              <div
+                className="top-movie-details-container"
+                style={{
+                  background: `rgba(0,0,0,0.8) url(${backdropPath})`,
+                  backgroundSize: 'cover',
+                  backgroundBlendMode: 'darken',
+                }}
+              >
+                <Header />
+                <div className="desktop-top-card-content-container">
+                  <h1 className="title-heading">{title}</h1>
+                  <div className="duration-type-release-year-container">
+                    <p className="duration">{duration}</p>
+                    <p className="adult-type">{movieType}</p>
+                    <p className="release-year">{year}</p>
+                  </div>
+                  <p className="movie-overview">{overview}</p>
+                  <button
+                    className={`play-btn ${
+                      wishListButton === 'Like' ? 'like-style' : 'dislike-style'
+                    }`}
+                    type="button"
+                    onClick={setWishlist}
+                  >
+                    {wishListButton}
+                  </button>
+                </div>
+              </div>
+              <div className="movie-details-container">
+                <ul className="content-list-container">
+                  <h1 className="content-heading">Genres</h1>
+                  {genres.map(eachGenre => (
+                    <li className="genre-list" key={eachGenre.id}>
+                      <p className="content-description">{eachGenre.name}</p>
+                    </li>
+                  ))}
+                </ul>
+                <ul className="content-list-container">
+                  <h1 className="content-heading">Audio Available</h1>
+                  {spokenLanguages.map(eachLanguage => (
+                    <li className="genre-list" key={eachLanguage.id}>
+                      <p className="content-description">
+                        {eachLanguage.englishName}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+                <div className="content-list-container">
+                  <h1 className="content-heading">Rating Count</h1>
+                  <p className="content-description">{voteCount}</p>
+                  <h1 className="content-heading"> Rating Average</h1>
+                  <p className="content-description">{voteAverage}</p>
+                </div>
+                <div className="content-list-container">
+                  <h1 className="content-heading">Budget</h1>
+                  <p className="content-description">{budget}</p>
+                  <p className="content-heading"> Release Date</p>
+                  <p className="content-description">{dateFormat}</p>
+                </div>
+              </div>
+              <div className="similar-movie-container">
+                <h1 className="similar-movies-heading">More like this</h1>
+                <ul className="similar-movies-list-container">
+                  {perPage.map(eachMovie => (
+                    <Link
+                      to={`${eachMovie.id}`}
+                      onClick={() => {
+                        window.location.href = `${eachMovie.id}`
+                      }}
+                      className="link-style"
+                      key={eachMovie.id}
+                    >
+                      <li>
+                        <img
+                          src={eachMovie.posterPath}
+                          alt={eachMovie.title}
+                          className="movie-img"
+                        />
+                      </li>
+                    </Link>
+                  ))}
+                </ul>
+                <Pagination
+                  onClickPage={this.onClickPage}
+                  active={active}
+                  data={Math.ceil(similarMoviesList.length / 3)}
+                />
+                <Footer />
+              </div>
+            </>
+          )
+        }}
+      </HeaderContext.Consumer>
     )
   }
 

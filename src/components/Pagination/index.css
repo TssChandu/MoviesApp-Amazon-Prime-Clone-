@@ -8,11 +8,6 @@
   cursor: pointer;
 }
 
-.pageButton:hover {
-  border: none;
-  background-color: rgb(25, 85, 50);
-}
-
 .active {
   color: #fff;
   background-color: rgb(28, 63, 160);
@@ -28,9 +23,6 @@
   padding: 0px;
   cursor: pointer;
 }
-.icon:hover {
-  color: rgb(28, 63, 160);
-}
 
 .pagination-container {
   display: flex;
@@ -38,4 +30,14 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+@media screen and (orientation: landscape) and (min-width: 1100px) {
+  .pageButton:hover {
+    border: none;
+    background-color: rgb(25, 85, 50);
+  }
+  .icon:hover {
+    color: rgb(28, 63, 160);
+  }
 }

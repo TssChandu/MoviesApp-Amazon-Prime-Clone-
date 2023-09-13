@@ -92,7 +92,7 @@ class Search extends Component {
               <img
                 src={eachMovie.posterPath}
                 alt={eachMovie.title}
-                className="movie-img"
+                className="movie-img search"
               />
             </li>
           </Link>

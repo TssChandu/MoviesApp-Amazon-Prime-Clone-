@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
+import HeaderContext from '../../headerContext/HeaderContext'
 import Header from '../Header'
 import Footer from '../Footer'
 
@@ -106,43 +107,84 @@ class Home extends Component {
 
   renderTopContainerSuccessView = () => {
     const {randomMovieObj} = this.state
-    const {backdropPath, overview, posterPath, title} = randomMovieObj
+    const {backdropPath, overview, posterPath, title, id} = randomMovieObj
 
     return (
-      <>
-        <div
-          className="desktop-top-container"
-          style={{
-            background: `rgba(0, 0, 0, 0.8) url(${backdropPath})`,
-            backgroundSize: 'cover',
-          }}
-        >
-          <Header />
-          <div className="desktop-top-card-content-container">
-            <h1 className="title-heading">{title}</h1>
-            <h1 className="movie-overview">{overview}</h1>
-            <button className="play-btn" type="button">
-              Play
-            </button>
-          </div>
-        </div>
-        <div
-          className="mobile-top-container"
-          style={{
-            backgroundImage: `url(${posterPath})`,
-            backgroundSize: 'cover',
-          }}
-        >
-          <Header />
-          <div className="mobile-top-card-content-container">
-            <h1 className="title-heading">{title}</h1>
-            <p className="movie-overview">{overview}</p>
-            <button className="play-btn" type="button">
-              Play
-            </button>
-          </div>
-        </div>
-      </>
+      <HeaderContext.Consumer>
+        {value => {
+          const {
+            wishListMovies,
+            addMovieToWishList,
+            removeMovieToWishList,
+          } = value
+          /* console.log(wishListMovies) */
+          const checkMovie = wishListMovies.filter(item => id === item.id)
+          // console.log(checkMovie)
+          const wishListButton = checkMovie.length !== 0 ? 'Dislike' : 'Like'
+          const setWishlist = () => {
+            if (checkMovie.length !== 0) {
+              const newWishListMovies = wishListMovies.filter(
+                item => id !== item.id,
+              )
+              removeMovieToWishList(newWishListMovies)
+            } else {
+              addMovieToWishList({
+                id,
+                posterPath,
+                title,
+              })
+            }
+          }
+
+          return (
+            <>
+              <div
+                className="desktop-top-container"
+                style={{
+                  background: `rgba(0, 0, 0, 0.8) url(${backdropPath})`,
+                  backgroundSize: 'cover',
+                  backgroundBlendMode: 'darken',
+                }}
+              >
+                <Header />
+                <div className="desktop-top-card-content-container">
+                  <h1 className="title-heading">{title}</h1>
+                  <h1 className="movie-overview">{overview}</h1>
+                  <button
+                    className={`play-btn ${
+                      wishListButton === 'Like' ? 'like-style' : 'dislike-style'
+                    }`}
+                    type="button"
+                    onClick={setWishlist}
+                  >
+                    {wishListButton}
+                  </button>
+                </div>
+              </div>
+              <div
+                className="mobile-top-container"
+                style={{
+                  backgroundImage: `url(${posterPath})`,
+                  backgroundSize: 'cover',
+                }}
+              >
+                <Header />
+                <div className="mobile-top-card-content-container">
+                  <h1 className="title-heading">{title}</h1>
+                  <p className="movie-overview">{overview}</p>
+                  <button
+                    className="play-btn"
+                    type="button"
+                    onClick={setWishlist}
+                  >
+                    {wishListButton}
+                  </button>
+                </div>
+              </div>
+            </>
+          )
+        }}
+      </HeaderContext.Consumer>
     )
   }
 

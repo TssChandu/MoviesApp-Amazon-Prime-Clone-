@@ -8,7 +8,8 @@
   min-height: 100vh;
   background-color: #131313;
 }
-.popular-movies-container {
+.popular-movies-container,
+.favourites-movies-container {
   list-style-type: none;
   padding-left: 165px;
   padding-right: 165px;
@@ -32,7 +33,12 @@
   height: 170px;
   border-radius: 8px;
   cursor: pointer;
+  transform: all 1s;
 }
+.movie-img:hover {
+  transform: scale(1.25);
+}
+
 .popular-loader-container,
 .popular-failure-container {
   height: 100%;
@@ -54,6 +60,7 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
+  width: 100%;
   font-size: 24px;
   line-height: 31px;
   color: #ffffff;
@@ -78,7 +85,8 @@
 @media screen and (max-width: 992px) {
   .popular-loader-container,
   .popular-failure-container,
-  .popular-movies-container {
+  .popular-movies-container,
+  .favourites-movies-container {
     padding: 0px 32px 0px 32px;
   }
 
@@ -103,4 +111,13 @@
     font-size: 14px;
     line-height: 24px;
   }
+}
+
+.favourites-movies-container {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.fav-img {
+  margin: 10px 0 !important;
 }

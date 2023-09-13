@@ -62,7 +62,7 @@
   justify-content: center;
   align-items: center;
   padding: 8px 24px;
-  width: 74px;
+  width: content-width;
   height: 40px;
   background: #ffffff;
   border-radius: 4px;
@@ -117,7 +117,7 @@
     line-height: 21px;
   }
   .play-btn {
-    width: 76px;
+    width: content-width;
     height: 32px;
     font-size: 14px;
     line-height: 16px;
@@ -195,6 +195,7 @@
 .slick-bottom-container {
   background-color: #131313;
   margin: 0px;
+  width: 100vw;
   height: 100%;
   padding: 48px 165px 0px 165px;
 }
@@ -226,7 +227,11 @@
   width: 300px;
   height: 170px;
   cursor: pointer;
-  margin: 0px 15px;
+  margin: 15px 15px;
+  transform: all 1s;
+}
+.movie-image:hover {
+  transform: skew(5deg, 5deg) rotateY(10deg);
 }
 
 .slick-loading-container {

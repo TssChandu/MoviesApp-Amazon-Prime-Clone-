@@ -154,3 +154,12 @@
     margin: 12px 24px 12px 0px;
   }
 }
+.like-style {
+  background-color: rgb(3, 168, 44) !important;
+  color: #fff !important;
+}
+
+.dislike-style {
+  background-color: rgb(155, 7, 7) !important;
+  color: #000 !important;
+}

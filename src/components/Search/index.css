@@ -243,9 +243,11 @@
 .movie-img {
   width: 255px;
   height: 170px;
+  border-radius: 8px;
+}
+.search {
   margin-right: 30px;
   margin-bottom: 24px;
-  border-radius: 8px;
 }
 @media screen and (max-width: 992px) {
   .search-loader-container,

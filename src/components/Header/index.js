@@ -39,6 +39,9 @@ class Header extends Component {
             <Link to="/popular" className="link-style">
               <li className="header-list pop">Popular</li>
             </Link>
+            <Link to="/favourite" className="link-style">
+              <li className="header-list pop">Favourite</li>
+            </Link>
           </ul>
           <div className="search-profile-container">
             <Link to="/search" className="link-style">
@@ -72,6 +75,9 @@ class Header extends Component {
             </Link>
             <Link to="/popular" className="link-style">
               <li className="mobile-hamburger-list">Popular</li>
+            </Link>
+            <Link to="/favourite" className="link-style account">
+              <li className="mobile-hamburger-list">Favourite</li>
             </Link>
             <Link to="/account" className="link-style account">
               <li className="mobile-hamburger-list">Account</li>
